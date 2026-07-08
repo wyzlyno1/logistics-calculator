@@ -4,7 +4,7 @@ App.register({
     name: '需求预测方法',
     icon: '📈',
     category: '需求管理',
-    order: 5,
+    order: 9,
     shortDesc: '移动平均、指数平滑、误差分析',
     description: '多种时间序列预测方法，含 MAD/MSE/MAPE 误差分析。输入历史数据，输出预测值和精度评估。',
     fullWidth: true,

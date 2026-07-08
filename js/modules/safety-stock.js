@@ -4,7 +4,7 @@ App.register({
     name: '安全库存计算',
     icon: '🛡️',
     category: '库存管理',
-    order: 2,
+    order: 3,
     shortDesc: '安全库存、再订货点、服务水平分析',
     description: '根据需求分布和服务水平计算安全库存量与再订货点。支持三种模型：需求不确定、提前期不确定、两者均不确定。',
     fullWidth: false,

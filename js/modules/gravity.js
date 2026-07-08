@@ -4,7 +4,7 @@ App.register({
     name: '重心法选址',
     icon: '📍',
     category: '物流规划',
-    order: 3,
+    order: 5,
     shortDesc: '多需求点最优选址计算',
     description: '基于重心法求解单设施最优选址。输入各需求点坐标和需求量，计算总运输成本最小的选址坐标。支持迭代优化。',
     fullWidth: true,

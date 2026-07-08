@@ -4,7 +4,7 @@ App.register({
     name: '经济生产批量 (EPQ)',
     icon: '🏭',
     category: '库存管理',
-    order: 7,
+    order: 2,
     shortDesc: '生产批量优化、最大库存计算',
     description: '计算最优生产批量、生产周期、最大库存量及年总成本。适用于边生产边消耗的自制件场景。',
     fullWidth: false,

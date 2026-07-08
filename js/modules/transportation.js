@@ -4,7 +4,7 @@ App.register({
     name: '运输问题求解',
     icon: '🚚',
     category: '物流规划',
-    order: 6,
+    order: 7,
     shortDesc: '最小元素法 + 伏格尔法 + 位势法',
     description: '求解运输问题的初始可行方案，使用位势法判断最优性，闭回路法调整至最优解。',
     fullWidth: true,
