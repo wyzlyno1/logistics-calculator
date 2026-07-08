@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物流计算工具箱 — 湫</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" id="sidebar-header" title="点击回到首页">
+                <img class="sidebar-avatar" src="assets/avatar.jpg" alt="avatar" width="48" height="48">
+                <h1>物流计算工具箱</h1>
+                <p>by 湫 · 物流工程</p>
+            </div>
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <!-- JS 动态生成 -->
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-about" id="btn-about">ℹ️ 关于</button>
+                <p style="font-size:11px; color:#475569; margin-top:8px;">© 2026 湫</p>
+                <p id="js-status" style="font-size:10px; margin-top:4px; color:#334155;">加载中...</p>
+                <div id="debug-info" style="display:none; margin-top:8px; font-size:10px; background:#450a0a; padding:8px; border-radius:4px; max-height:160px; overflow-y:auto; color:#fca5a5;"></div>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 欢迎页 -->
+            <div class="welcome" id="welcome">
+                <div class="welcome-card">
+                    <img class="welcome-avatar" src="assets/avatar.jpg" alt="avatar" width="80" height="80">
+                    <h2>物流计算工具箱</h2>
+                    <p>物流工程课程辅助工具 · 覆盖库存管理、物流规划、需求预测等核心计算</p>
+                    <div class="welcome-modules" id="welcome-modules">
+                        <!-- JS 动态生成快捷入口 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模块容器 -->
+            <div class="module-container" id="module-container" style="display:none;">
+                <div class="module-header">
+                    <div class="module-header-top">
+                        <h2 id="module-title"></h2>
+                        <button class="btn-home" id="btn-home" title="回到首页">🏠 首页</button>
+                    </div>
+                    <p id="module-desc"></p>
+                </div>
+                <div class="module-body" id="module-body">
+                    <!-- 模块内容 -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 关于弹窗 -->
+    <div class="modal-overlay" id="about-modal" style="display:none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="about-content">
+                <img src="assets/avatar.jpg" alt="avatar" class="about-avatar" width="72" height="72">
+                <h2>物流计算工具箱</h2>
+                <p class="about-version">v1.0 · 2026年7月</p>
+
+                <div class="about-section">
+                    <h3>作者</h3>
+                    <p><strong>湫</strong></p>
+                    <p>营口理工学院 · 物流工程专业</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>关于工具</h3>
+                    <p>本工具为物流工程课程学习辅助工具，覆盖库存管理、物流规划、需求预测等核心计算模块。</p>
+                    <p>所有计算均基于物流工程教材中的标准公式，提供逐步求解过程，方便学习与作业参考。</p>
+                    <p>纯前端实现，无需网络，打开即用。</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>技术说明</h3>
+                    <p>HTML + CSS + 原生 JavaScript，无框架、无后端、无数据收集。</p>
+                    <p>所有计算在浏览器本地完成，输入数据不会被上传或存储。</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>使用许可</h3>
+                    <p>自由使用、分享、修改。用于课程作业时请注明工具来源。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 调试：JS错误捕获 -->
+    <script>
+        window.onerror = function(msg, url, line, col, error) {
+            var debugEl = document.getElementById('debug-info');
+            if (debugEl) {
+                debugEl.style.display = 'block';
+                debugEl.innerHTML += '<div style="margin:2px 0;">❌ ' + msg + ' (行 ' + line + ')</div>';
+            }
+            var statusEl = document.getElementById('js-status');
+            if (statusEl) { statusEl.textContent = 'JS 出错 ❌'; statusEl.style.color = '#fca5a5'; }
+        };
+        document.addEventListener('DOMContentLoaded', function() {
+            var statusEl = document.getElementById('js-status');
+            if (statusEl) { statusEl.textContent = 'JS 正常'; statusEl.style.color = '#4ade80'; }
+            // 关于弹窗事件
+            document.getElementById('btn-about').addEventListener('click', function() {
+                document.getElementById('about-modal').style.display = 'flex';
+            });
+            document.getElementById('modal-close').addEventListener('click', function() {
+                document.getElementById('about-modal').style.display = 'none';
+            });
+            document.getElementById('about-modal').addEventListener('click', function(e) {
+                if (e.target === this) { this.style.display = 'none'; }
+            });
+            // Esc 关闭弹窗
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.getElementById('about-modal').style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <!-- 按加载顺序引入 -->
+    <script src="js/data.js"></script>
+    <script src="js/modules/eoq.js"></script>
+    <script src="js/modules/safety-stock.js"></script>
+    <script src="js/modules/gravity.js"></script>
+    <script src="js/modules/abc.js"></script>
+    <script src="js/modules/forecasting.js"></script>
+    <script src="js/modules/transportation.js"></script>
+    <script src="js/modules/epq.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
